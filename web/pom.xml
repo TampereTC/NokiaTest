@@ -95,6 +95,32 @@
 					<warName>${build.warname}</warName>
 				</configuration>
 			</plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.2</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <!-- here the phase you need -->
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}/web/target</directory>
+                  <includes>
+                        <include>web-service.war</include>
+                  </includes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 		</plugins>
 	</build>
 </project>
