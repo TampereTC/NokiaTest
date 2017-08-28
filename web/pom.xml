@@ -82,7 +82,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.nokia.oss.cm</groupId>
-			<artifactId>web-service.lib</artifactId>
+			<artifactId>web-service.utils</artifactId>
 		</dependency>
 	</dependencies>
 

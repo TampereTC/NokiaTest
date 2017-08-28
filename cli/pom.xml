@@ -12,7 +12,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.nokia.oss.cm</groupId>
-			<artifactId>web-service.lib</artifactId>
+			<artifactId>web-service.utils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
