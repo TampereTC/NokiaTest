@@ -27,9 +27,9 @@
               <outputDirectory>${basedir}/target/</outputDirectory>
               <resources>          
                 <resource>
-                  <directory>${basedir}/web/target</directory>
+                  <directory>${basedir}/../web/target</directory>
 		  <includes>
-			<include>web-service*war</include>
+			<include>web-service.war</include>
 		  </includes>
                   <filtering>false</filtering>
                 </resource>
