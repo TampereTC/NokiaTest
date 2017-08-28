@@ -1,0 +1,92 @@
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>NE CSV Viewer</title>
+		<script src="js/jquery-2.2.3.min.js"></script>
+		
+		<style>
+			input[type="text"] {
+    			width: 350px;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div>
+		  <h2>Network Elements</h2>
+		</div>
+		
+		<div>
+		
+			<table id="neData" width="500" border="1" cellspacing="0" cellpadding="2">
+			  <thead>
+			      <tr>
+			          <th>Cell ID</th>
+	                  <th>Name</th>
+	                  <th>Adaptation Release</th>
+	                  <th>Adaptation Version</th>
+	                  <th>Generation</th>
+	                  <th>Country</th>
+	                  <th>City</th>
+	                  <th>Operator ID</th>
+	              </tr>
+	          </thead>
+	          <tbody>
+	          </tbody>
+			</table>
+			
+			
+			<p>
+            <input type="button" id="loadData" value="Load NE data fom csv file" />
+            <input type="text" id="csvFile" value="c:/work/web-service/lib/src/test/resources/test_data.csv" />
+            <p>
+            
+		</div>
+
+ 		<script>
+ 			
+	        $(document).ready(function() {
+	            $("#loadData").click(function() {
+	                load();
+	            });
+	        });
+	        
+	        function getCsvFile() {
+	        	return $("#csvFile").val();
+	        }
+	        
+	        function load() {
+		        $.ajax( {
+		            contentType:"application/json; charset=utf-8",
+		            type: "POST",
+		            url: "http://localhost:8080/rest/cm/ne",
+		            data: getCsvFile(),
+		            dataType:"json",
+		            success: function(response) {         	
+		            	$.each(response, function(key, value) {
+		            		$('#neData > tbody:last-child').append(
+		            				'<tr><td>'+ value.cellId +
+		            				'</td><td>'+ value.name +
+		            				'</td><td>'+ value.release +
+		            				'</td><td>'+ value.version +
+		            				'</td><td>'+ value.gen +
+		            				'</td><td>'+ value.country +
+		            				'</td><td>'+ value.city +
+		            				'</td><td>'+ value.operatorId +
+		            				'</td></tr>');
+		            	});
+		            },
+		            error: function(response) {
+		            	alert("error" + response.responseText);
+		            }
+		        });
+	        }
+
+        
+ 		</script>
+		
+	</body>
+	
+</html>
