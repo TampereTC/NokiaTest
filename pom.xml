@@ -8,7 +8,7 @@
 	<modules>
 		<module>web</module>
 		<module>bom</module>
-		<module>lib</module>
+		<module>utils</module>
 	</modules>
 
 </project>
