@@ -1,19 +1,16 @@
 package com.nokia.oss.cm.csv;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.io.InputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import org.springframework.core.io.ClassPathResource;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import com.nokia.oss.cm.pojo.NEPojo;
@@ -34,31 +31,7 @@ public class CSVReaderImpl implements CSVReader {
 	 */
 	@Override
 	public Collection<NEPojo> read(String path) throws IOException {
-
-	InputStream stream = new ClassPathResource(path).getInputStream();
-
-		try (BufferedReader buffer = new BufferedReader(new InputStreamReader(stream))) {
-		String collect = buffer.lines().collect(Collectors.joining("\n"));
-		List<String> lst = Arrays.asList(collect.split("\n"));
-	return createNEPojoList(lst);
-	}
-	}
-
-
-
-	public Collection<NEPojo> read2(String path) throws IOException {
-
-	InputStream stream = new ClassPathResource(path).getInputStream();
-
-		try (BufferedReader buffer = new BufferedReader(new InputStreamReader(stream))) {
-		return null;
-		}
-	}
-
-
-        public Collection<NEPojo> read3(String path) throws IOException {
-
-		try (Stream<String> stream = getFileStream(path)) {
+		try (Stream<String> stream = getStringStream(path)) {
 			return createNEPojoList(collectCsvFileStream(stream));
 		}
 	}
@@ -88,8 +61,17 @@ public class CSVReaderImpl implements CSVReader {
 		return line.split(DELIMITER);
 	}
 
-	private Stream<String> getFileStream(String path) throws IOException {
-		return Files.lines(Paths.get(path));
+	private Stream<String> getStringStream(String path) throws IOException {
+		BufferedReader buffer = getBufferedReader(getClasspathResourceStream(path));
+		return buffer.lines();
 	}
 
+	private BufferedReader getBufferedReader(final InputStream stream) {
+		return new BufferedReader(new InputStreamReader(stream));
+	}
+
+	private InputStream getClasspathResourceStream(String path) throws IOException {
+		return new ClassPathResource(path).getInputStream();
+	}
+	
 }

@@ -57,11 +57,15 @@
 	        	return $("#csvFile").val();
 	        }
 	        
+	        function getUrl(url) {
+	        	return location.href + url;
+	        }
+	        
 	        function load() {
 		        $.ajax( {
 		            contentType:"application/json; charset=utf-8",
 		            type: "POST",
-			    url: location.href+"/rest/cm/ne",
+		            url: getUrl("rest/cm/ne"),
 		            data: getCsvFile(),
 		            dataType:"json",
 		            success: function(response) {         	
