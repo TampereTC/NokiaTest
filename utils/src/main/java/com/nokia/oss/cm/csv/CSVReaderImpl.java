@@ -37,12 +37,25 @@ public class CSVReaderImpl implements CSVReader {
 	InputStream stream = new ClassPathResource(path).getInputStream();
 
 		try (BufferedReader buffer = new BufferedReader(new InputStreamReader(stream))) {
+		String collect = buffer.lines().collect(Collectors.joining("\n"));
+		List<String> lst = Arrays.asList(collect.split("\n"));
+	return createNEPojoList(lst);
+	}
+	}
+
+
+
+	public Collection<NEPojo> read2(String path) throws IOException {
+
+	InputStream stream = new ClassPathResource(path).getInputStream();
+
+		try (BufferedReader buffer = new BufferedReader(new InputStreamReader(stream))) {
 		return null;
 		}
 	}
 
 
-        public Collection<NEPojo> read2(String path) throws IOException {
+        public Collection<NEPojo> read3(String path) throws IOException {
 
 		try (Stream<String> stream = getFileStream(path)) {
 			return createNEPojoList(collectCsvFileStream(stream));
