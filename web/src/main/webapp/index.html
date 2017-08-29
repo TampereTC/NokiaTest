@@ -61,7 +61,7 @@
 		        $.ajax( {
 		            contentType:"application/json; charset=utf-8",
 		            type: "POST",
-		            url: "/rest/cm/ne",
+			    url: location.href+"/rest/cm/ne",
 		            data: getCsvFile(),
 		            dataType:"json",
 		            success: function(response) {         	
