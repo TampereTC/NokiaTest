@@ -40,7 +40,7 @@
 			
 			<p>
             <input type="button" id="loadData" value="Load NE data fom csv file" />
-            <input type="text" id="csvFile" value="c:/work/web-service/lib/src/test/resources/test_data.csv" />
+            <input type="text" id="csvFile" value="test_data.csv" />
             <p>
             
 		</div>
@@ -61,7 +61,7 @@
 		        $.ajax( {
 		            contentType:"application/json; charset=utf-8",
 		            type: "POST",
-		            url: "http://localhost:8080/rest/cm/ne",
+		            url: "/rest/cm/ne",
 		            data: getCsvFile(),
 		            dataType:"json",
 		            success: function(response) {         	
