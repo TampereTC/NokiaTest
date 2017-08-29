@@ -30,6 +30,16 @@ public class CSVReaderImpl implements CSVReader {
 	@Override
 	public Collection<NEPojo> read(String path) throws IOException {
 
+	InputStream stream = new ClassPathResource(path).getInputStream();
+
+		try (BufferedReader buffer = new BufferedReader(new InputStreamReader(stream))) {
+		return null;
+		}
+	}
+
+
+        public Collection<NEPojo> read2(String path) throws IOException {
+
 		try (Stream<String> stream = getFileStream(path)) {
 			return createNEPojoList(collectCsvFileStream(stream));
 		}
