@@ -1,9 +1,9 @@
 package com.nokia.oss.cm.csv;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.util.Collection;
 
 import org.junit.Before;
@@ -20,14 +20,14 @@ public class CSVReaderTest {
 		this.reader = new CSVReaderImpl();
 	}
 
-	@Test(expected=NoSuchFileException.class)
+	@Test(expected=FileNotFoundException.class)
 	public void testFileNotFound_AndExpectNoSuchFileException() throws IOException {
 		reader.read("foo");
 	}
 		
 	@Test
 	public void testReadCSVToNEPojosList_AndExpectCorrectAmountOfPojos() throws IOException {
-		Collection<NEPojo> pojos = reader.read("src/test/resources/test_data.csv");
+		Collection<NEPojo> pojos = reader.read("test_data.csv");
 		assertEquals(55,pojos.size());
 	}
 	
