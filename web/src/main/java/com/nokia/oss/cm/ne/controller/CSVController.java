@@ -1,6 +1,7 @@
 package com.nokia.oss.cm.ne.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class CSVController {
 	@RequestMapping(value = "/ne", method = RequestMethod.POST, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Collection<NEPojo> getNe(@RequestBody String file) throws IOException {
-		return reader.read(file);
+		return new ArrayList<NEPojo>();				
 	}
 
 }

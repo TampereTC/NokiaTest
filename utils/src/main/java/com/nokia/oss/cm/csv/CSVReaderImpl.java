@@ -42,16 +42,12 @@ public class CSVReaderImpl implements CSVReader {
 
 	private Collection<NEPojo> createNEPojoList(List<String> csvLines) {
 		List<NEPojo> nePojos = new ArrayList<>();
-		for (String line : getCSVLinesWithoutHeader(csvLines)) {
+		for (String line : csvLines) {
 			nePojos.add(createNEPojo(line));
 		}
 		return nePojos;
 	}
 	
-	// Nice potential error if this method is not used 
-	private List<String> getCSVLinesWithoutHeader(List<String> csvLines) {
-		return csvLines.subList(1, csvLines.size());
-	}
 
 	private NEPojo createNEPojo(String line) {
 		return new NEPojo(getColumns(line));
