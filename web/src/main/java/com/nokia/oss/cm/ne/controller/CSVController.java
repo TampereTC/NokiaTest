@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nokia.oss.cm.csv.CSVReader;
 import com.nokia.oss.cm.pojo.NEPojo;
+import java.util.logging.Logger;
 
 /**
  * Controller that reads CSVData from given file path and return JSON
@@ -25,7 +26,7 @@ import com.nokia.oss.cm.pojo.NEPojo;
 @Controller
 @RequestMapping("/cm")
 public class CSVController {
-
+        private static final Logger logger = Logger.getLogger(CSVController.class.getName());
 	@Autowired
 	CSVReader reader;
 
@@ -39,6 +40,7 @@ public class CSVController {
 	@RequestMapping(value = "/ne", method = RequestMethod.POST, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Collection<NEPojo> getNe(@RequestBody String file) throws IOException {
+                logger.info(String.format("File %s in POST", file));
 		return new ArrayList<NEPojo>();				
 	}
 

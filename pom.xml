@@ -9,8 +9,8 @@
 		<module>web</module>
 		<module>bom</module>
 		<module>utils</module>
-	</modules>
-	<build>
+	</modules>       
+	<build>            
     <plugins>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
