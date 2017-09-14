@@ -27,7 +27,7 @@ public class CSVReaderTest {
 		
 	@Test
 	public void testReadCSVToNEPojosList_AndExpectCorrectAmountOfPojos() throws IOException {
-		Collection<NEPojo> pojos = reader.read("test_data.csv");
+		Collection<NEPojo> pojos = reader.read("unit_test_data.csv");
 		assertEquals(55,pojos.size());
 	}
 	
